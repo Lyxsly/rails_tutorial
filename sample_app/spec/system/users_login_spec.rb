@@ -41,7 +41,13 @@ RSpec.feature 'user login' do
 
       click_button 'Log in'
 
-      click_button 'Log out'
+      click_on 'Account'
+      click_on 'Log out'
+
+      expect(current_path).to eq root_path
+      expect(page).to have_link "",href: login_path
+      expect(page).to_not have_link "",href: logout_path
+      expect(page).to_not have_link "",href: user_path(user)
     end
   end
 end
